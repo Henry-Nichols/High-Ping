@@ -15,6 +15,13 @@ app.get('/getGames', cors(), (req, res) => {
   })
 })
 
+app.get('/getGenres', cors(), (req, res) => {
+  axios.get('https://api.rawg.io/api/genres?key=4ac7afb1b60f401eb680d188cfd7eaef')
+    .then(response => {
+      res.send(response.data)
+    })
+})
+
 app.use(staticMiddleware);
 
 app.use(errorMiddleware);

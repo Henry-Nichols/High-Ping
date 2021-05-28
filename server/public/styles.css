@@ -55,6 +55,16 @@ body {
   z-index: 1;
 }
 
+.sort-menu {
+  display: none;
+}
+
+.sort-menu.clicked {
+  display: flex;
+  flex-direction: column;
+}
+
+
 .menu-icons {
   display: block;
   position: absolute;
@@ -66,6 +76,7 @@ body {
 }
 
 .nav-links {
+  font-size: 20px;
   color: white;
   text-decoration: none;
   border-bottom: 1px solid white;
@@ -75,7 +86,6 @@ body {
 }
 
 .nav-links:hover {
-  background-color: rgb(89, 202, 161);
   transition: all 0.2s ease-out;
 }
 
@@ -99,4 +109,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.fa-chevron-up {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.fa-chevron-down {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.sort-list {
+  margin-top: 25px;
+  line-height: 20px;
+  font-size: 15px;
+  list-style: none;
 }
