@@ -22,7 +22,7 @@ export default class App extends React.Component {
 
   handleGenreSelection = (id) => {
     let genreGames = [];
-
+    let mergedData = [];
     axios.get('http://localhost:3001/getGenres')
       .then(res => {
         res.data.results.map((value, index, self) => {
@@ -41,19 +41,30 @@ export default class App extends React.Component {
           promises.push(axios.get(`http://localhost:3001/getGames/${game.id}`));
         });
 
+
         Promise.all(promises).then((gamesWithImage) => {
     //      console.log(gamesWithImage)
           gamesWithImage.forEach(gameWithImage => {
   //          console.log(genreGamesMap.get(gameWithImage.data.id));
             let gameGenre = genreGamesMap.get(gameWithImage.data.id);
-            gameGenre.["background_image"] = gameWithImage.data.background_image;
+            //gameGenre.["background_image"] = gameWithImage.data.background_image;
+
+            let temp = {
+              id: gameGenre.id,
+              name: gameGenre.name,
+              background_image: gameWithImage.data.background_image
+            };
+            mergedData.push(temp);
 
           })
+
+          console.log(mergedData);
+
+          this.setState({ games: mergedData });
+  //        this.forceUpdate();
         });
 
-        console.log(genreGames)
 
-        this.setState({ games: genreGames })
       })
 
 

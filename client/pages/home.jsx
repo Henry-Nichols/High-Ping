@@ -3,11 +3,17 @@ import React from 'react';
 
 export default class Home extends React.Component {
 
+  constructor(props){
+    super(props);
+  }
 
   render() {
+    console.log("rendering...");
+    console.log(this.props.games);
     return (
       <ul className="container">
         {
+
           this.props.games.map(game => {
    //         console.log(game)
             console.log(game.id)
