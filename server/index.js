@@ -22,6 +22,20 @@ app.get('/getGenres', cors(), (req, res) => {
     })
 })
 
+app.get('/getGenres/:id', cors(), (req, res) => {
+  axios.get(`https://api.rawg.io/api/genres/${req.params.id}?key=4ac7afb1b60f401eb680d188cfd7eaef`)
+    .then(response => {
+      res.send(response.data)
+    })
+})
+
+app.get('/getGames/:id', cors(), (req, res) => {
+  axios.get(`https://api.rawg.io/api/games/${req.params.id}?key=4ac7afb1b60f401eb680d188cfd7eaef`)
+    .then(response => {
+      res.send(response.data)
+    })
+})
+
 app.use(staticMiddleware);
 
 app.use(errorMiddleware);

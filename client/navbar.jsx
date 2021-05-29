@@ -7,7 +7,8 @@ export default class Navbar extends React.Component {
     this.state = {
       displaySort: false,
       displayGenre: false,
-      displayHamburger: false
+      displayHamburger: false,
+      genres: []
     }
   }
 
@@ -26,9 +27,14 @@ export default class Navbar extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:3001/getGenres')
       .then(res => {
-        this.setState({ genres: res.data.results })
+        let genres = [];
+        res.data.results.map((value, index, self) => {
+          let genre = {id: value.id, name: value.name};
+          genres.push(genre);
+        })
+        this.setState({ genres: genres })
       })
-  }
+    }
 
   render() {
     return (
@@ -56,12 +62,16 @@ export default class Navbar extends React.Component {
               Genre
               <i className={this.state.displayGenre ? 'fas fa-chevron-up' : 'fas fa-chevron-down'}></i>
             </a>
-            <ul>
-              <li>
-                {
-
-                }
-              </li>
+            <ul className={  this.state.displayGenre ? 'genre-menu clicked' : 'genre-menu'}>
+              {
+                this.state.genres.map(genre => {
+                  return (
+                    <li onClick={ () => this.props.handleGenreSelection(genre.id) } className='genre-list' key={ genre.id }>
+                      { genre.name }
+                    </li>
+                  )
+                })
+              }
             </ul>
           </li>
 
