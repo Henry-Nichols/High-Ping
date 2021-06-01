@@ -25,11 +25,11 @@ body {
   width: 100px;
 }
 
-.fa-bars {
+.hamburger-icon {
   color: white;
 }
 
-.fa-times {
+.x-icon {
   color: white;
   font-size: 2rem;
 }
@@ -129,12 +129,12 @@ body {
   align-items: center;
 }
 
-.fa-chevron-up {
+.up-arrow {
   margin-left: 10px;
   font-size: 20px;
 }
 
-.fa-chevron-down {
+.down-arrow {
   margin-left: 10px;
   font-size: 20px;
 }
@@ -170,11 +170,11 @@ body {
     text-align: center;
   }
 
-  .fa-times {
+  .x-icon {
     font-size: 1.75rem;
   }
 
-  .fa-bars {
+  .hamburger-icon {
     font-size: 1.75rem;
   }
 

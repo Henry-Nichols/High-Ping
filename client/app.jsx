@@ -13,7 +13,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/getGames')
+    axios.get('/api/getGames')
       .then(res => {
         this.setState({ games: res.data.results });
     });
@@ -34,7 +34,7 @@ export default class App extends React.Component {
   handleGenreSelection = (id) => {
     let genreGames = [];
     let mergedData = [];
-    axios.get('http://localhost:3001/getGenres')
+    axios.get('/api/getGenres')
       .then(res => {
         res.data.results.map((value, index, self) => {
           if(value.id === id){
@@ -48,7 +48,7 @@ export default class App extends React.Component {
         });
         let promises = [];
         genreGames.forEach((game, index, self) => {
-          promises.push(axios.get(`http://localhost:3001/getGames/${game.id}`));
+          promises.push(axios.get(`/api/getGames/${game.id}`));
         });
         Promise.all(promises)
           .then((gamesWithImage) => {
