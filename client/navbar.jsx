@@ -24,6 +24,16 @@ export default class Navbar extends React.Component {
     this.setState({ displayGenre: !this.state.displayGenre })
   }
 
+  handleGenreSelection = (id) => {
+    this.setState({displayHamburger: false});
+    this.props.handleGenreSelection(id);
+  }
+
+  handleSortSelection = (sortby) => {
+    this.setState({ displayHamburger: false });
+    this.props.handleSortSelection(sortby)
+  }
+
   componentDidMount() {
     axios.get('http://localhost:3001/getGenres')
       .then(res => {
@@ -51,9 +61,15 @@ export default class Navbar extends React.Component {
               <i className={ this.state.displaySort ? 'fas fa-chevron-up' : 'fas fa-chevron-down' }></i>
             </a>
             <ul className={ this.state.displaySort ? 'sort-menu clicked' : 'sort-menu' }>
-              <li className="sort-list">New and Trending</li>
-              <li className="sort-list">Upcoming</li>
-              <li className="sort-list">Most Played</li>
+              <li onClick={ () => { this.handleSortSelection('Highest Rated') }} className="sort-list">
+                Highest Rated
+              </li>
+              <li onClick={ () => { this.handleSortSelection('Top Sellers') }} className="sort-list">
+                Top Sellers
+              </li>
+              <li onClick={ () => { this.handleSortSelection('Most Played') }} className="sort-list">
+                Most Played
+              </li>
             </ul>
           </li>
 
@@ -66,7 +82,7 @@ export default class Navbar extends React.Component {
               {
                 this.state.genres.map(genre => {
                   return (
-                    <li onClick={ () => this.props.handleGenreSelection(genre.id) } className='genre-list' key={ genre.id }>
+                    <li onClick={ () => {this.handleGenreSelection(genre.id)} } className='genre-list' key={ genre.id }>
                       { genre.name }
                     </li>
                   )
