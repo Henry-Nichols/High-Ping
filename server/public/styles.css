@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    'Press Start 2P',
+    cursive;
+}
+
+body {
+  background-color: rgb(44, 51, 59);
+}
+
+.navbar {
+  background-color: rgb(89, 202, 161);
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-logo {
+  justify-self: center;
+  color: white;
+  width: 100px;
+}
+
+.hamburger-icon {
+  color: white;
+}
+
+.x-icon {
+  color: white;
+  font-size: 2rem;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  text-align: center;
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 70px;
+  left: -100%;
+  transition: all 0.5s ease;
+}
+
+.nav-menu.clicked {
+  opacity: 0.98;
+  background-color: rgb(44, 51, 59);
+  left: 0;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.sort-menu {
+  display: none;
+}
+
+.sort-menu.clicked {
+  display: flex;
+  flex-direction: column;
+}
+
+.genre-menu {
+  display: none;
+}
+
+.genre-menu.clicked {
+  display: flex;
+  flex-direction: column;
+}
+
+.genre-list {
+  margin-top: 25px;
+  line-height: 20px;
+  font-size: 15px;
+  list-style: none;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.genre-list:hover {
+  color: rgb(89, 202, 161);
+}
+
+.menu-icons {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(90%, 40%);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.nav-links {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  padding: 4rem;
+  width: 100%;
+  display: table;
+  cursor: pointer;
+}
+
+.game-name {
+  margin-top: 10px;
+  color: white;
+  font-size: 15px;
+}
+
+.game-image {
+  margin-top: 20px;
+  width: 90%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.up-arrow {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.down-arrow {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.sort-list {
+  margin-top: 25px;
+  line-height: 20px;
+  font-size: 15px;
+  list-style: none;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.sort-list:hover {
+  color: rgb(89, 202, 161);
+}
+
+@media (min-width: 600px) {
+  .game-image {
+    width: 40%;
+  }
+
+  .game-name {
+    font-size: 10px;
+  }
+
+  .navbar {
+    height: 40px;
+  }
+
+  .name-logo {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .x-icon {
+    font-size: 1.75rem;
+  }
+
+  .hamburger-icon {
+    font-size: 1.75rem;
+  }
+
+  .menu-icons {
+    transform: translate(50%, -5%);
+  }
+
+  .nav-menu {
+    top: 60px;
+  }
+}
