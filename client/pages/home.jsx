@@ -1,9 +1,7 @@
 import React from 'react';
 
-
 export default class Home extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
@@ -13,7 +11,7 @@ export default class Home extends React.Component {
         {
           this.props.games.map(game => {
             return (
-              <li className="list-game" key={ game.id }>
+              <li onClick={() => { this.props.handleGamesDescription(game.id) }} className="list-game" key={ game.id }>
                 <img className="game-image" src={ game.background_image }></img>
                 <h2 className="game-name" >{ game.name }</h2>
               </li>

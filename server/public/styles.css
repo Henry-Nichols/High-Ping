@@ -23,6 +23,7 @@ body {
   justify-self: center;
   color: white;
   width: 100px;
+  cursor: pointer;
 }
 
 .hamburger-icon {
@@ -127,16 +128,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
 
 .up-arrow {
   margin-left: 10px;
   font-size: 20px;
+  color: white;
 }
 
 .down-arrow {
   margin-left: 10px;
   font-size: 20px;
+  color: white;
 }
 
 .sort-list {
@@ -150,6 +154,73 @@ body {
 
 .sort-list:hover {
   color: rgb(89, 202, 161);
+}
+
+.game-title {
+  color: white;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.trailer-image {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  width: 100%;
+  padding: 20px 25px;
+}
+
+.description-clicked {
+  display: none;
+}
+
+.description-container {
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  width: 100%;
+  cursor: pointer;
+}
+
+.description {
+  font-size: 12px;
+  list-style: none;
+  line-height: 20px;
+  letter-spacing: 1px;
+  font-style: italic;
+  padding: 0px 15px;
+}
+
+.description-tag {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+  letter-spacing: 1px;
+  padding: 30px 35px;
+  list-style: none;
+  width: 100%;
+}
+
+.favorite-unclicked {
+  color: rgb(89, 202, 161);
+  font-size: 2rem;
+}
+
+.favorite-clicked {
+  color: rgb(89, 202, 161);
+  font-size: 2rem;
 }
 
 @media (min-width: 600px) {
