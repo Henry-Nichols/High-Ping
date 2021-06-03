@@ -1,14 +1,17 @@
 import React from 'react';
 import Home from './pages/home';
 import Navbar from './navbar'
+import Description from './pages/description'
 import axios from 'axios';
 
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      games: []
+      games: [],
+      page: 'Home',
+      movieTrailer: "",
+      description: ""
     };
   }
 
@@ -17,6 +20,10 @@ export default class App extends React.Component {
       .then(res => {
         this.setState({ games: res.data.results });
     });
+  }
+
+  handleHomeScreen = () => {
+    this.setState({ page: 'Home' })
   }
 
   handleSortSelection = (sortby) => {
@@ -37,7 +44,7 @@ export default class App extends React.Component {
     axios.get('/api/getGenres')
       .then(res => {
         res.data.results.map((value, index, self) => {
-          if(value.id === id){
+          if (value.id === id) {
             genreGames.push(...value.games);
             return;
           }
@@ -62,15 +69,41 @@ export default class App extends React.Component {
               mergedData.push(temp);
             })
             this.setState({ games: mergedData });
+            this.setState({ page: 'Home' })
           });
         })
       }
 
+      handleGamesDescription = (id) => {
+        let promises = [];
+        promises.push(axios.get(`/api/getGames/${id}`))
+        promises.push(axios.get(`/api/getTrailers/${id}`))
+
+        Promise.all(promises)
+          .then(data => {
+            let trailerResult = 'No Data Found'
+            const description = data[0].data
+            const movieTrailer = data[1].data.results
+            if (movieTrailer && movieTrailer.length > 0) {
+              trailerResult = movieTrailer[0]
+            }
+            this.setState({ movieTrailer: trailerResult })
+            this.setState({ description: description })
+            this.setState({ page: 'Description' })
+          })
+    }
+
   render() {
+    let page;
+    if (this.state.page === 'Home') {
+      page = <Home games={this.state.games} handleGamesDescription={this.handleGamesDescription} />
+    } else if (this.state.page === 'Description') {
+      page = <Description movieTrailer={ this.state.movieTrailer } description={ this.state.description } />
+    }
     return (
       <div>
-        <Navbar handleSortSelection={ this.handleSortSelection } handleGenreSelection={ this.handleGenreSelection } />
-        <Home games={this.state.games}/>
+        <Navbar handleHomeScreen={ this.handleHomeScreen } handleSortSelection={ this.handleSortSelection } handleGenreSelection={ this.handleGenreSelection } />
+        {page}
       </div>
     );
   }

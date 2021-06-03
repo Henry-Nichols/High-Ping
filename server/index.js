@@ -4,7 +4,8 @@ const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 const app = express();
 const axios = require('axios');
-const cors = require('cors')
+const cors = require('cors');
+const { response } = require('express');
 
 app.get('/api/getGames', (req, res) => {
   axios.get(`https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}`)
@@ -22,6 +23,13 @@ app.get('/api/getGenres', (req, res) => {
 
 app.get('/api/getGames/:id', (req, res) => {
   axios.get(`https://api.rawg.io/api/games/${req.params.id}?key=${process.env.RAWG_API_KEY}`)
+    .then(response => {
+      res.send(response.data)
+    })
+})
+
+app.get('/api/getTrailers/:id', (req, res) => {
+  axios.get(`https://api.rawg.io/api/games/${req.params.id}/movies?key=${process.env.RAWG_API_KEY}`)
     .then(response => {
       res.send(response.data)
     })

@@ -25,7 +25,7 @@ export default class Navbar extends React.Component {
   }
 
   handleGenreSelection = (id) => {
-    this.setState({displayHamburger: false});
+    this.setState({ displayHamburger: false });
     this.props.handleGenreSelection(id);
   }
 
@@ -49,7 +49,7 @@ export default class Navbar extends React.Component {
   render() {
     return (
       <nav className="navbar">
-        <h1 className="name-logo">High Ping</h1>
+        <h1 onClick={ this.props.handleHomeScreen } className="name-logo">High Ping</h1>
         <div className="menu-icons" onClick={ this.handleClick }>
           <i className={ this.state.displayHamburger ? 'fas fa-times x-icon' : 'fas fa-bars hamburger-icon' }></i>
         </div>
